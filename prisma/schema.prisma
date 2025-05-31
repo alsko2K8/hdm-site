@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  discord   String   @unique
+  firstName String
+  lastName  String
+  house     String
+  year      Int
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Code {
+  id        String   @id @default(cuid())
+  value     String   @unique
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
